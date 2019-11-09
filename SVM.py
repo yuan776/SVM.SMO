@@ -31,7 +31,7 @@ class SVM():
                 i = self.get_rnd_int(0, n-1, j) # Get random int i~=j
                 x_i, x_j, y_i, y_j = X[i,:], X[j,:], y[i], y[j]
                 k = kernel(x_i, x_i) + kernel(x_j, x_j) - 2 * kernel(x_i, x_j)
-                if k == 0:
+                if k <= 0:
                     continue
                 alpha_prime_j, alpha_prime_i = alpha[j], alpha[i]
                 (L, H) = self.compute_L_H(self.C, alpha_prime_j, alpha_prime_i, y_j, y_i)
@@ -103,6 +103,6 @@ class SVM():
     # Define kernels
     def kernel_linear(self, x1, x2):
         return np.dot(x1, x2.T)
-        
+
     def kernel_quadratic(self, x1, x2):
         return (np.dot(x1, x2.T) ** 2)

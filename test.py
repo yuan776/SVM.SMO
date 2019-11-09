@@ -5,7 +5,7 @@ filepath = os.path.dirname(os.path.abspath(__file__))
 
 def readData(filename, header=True):
     data, header = [], None
-    with open(filename, 'rb') as csvfile:
+    with open(filename, 'r') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',')
         if header:
             header = spamreader.next()
